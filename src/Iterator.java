@@ -29,13 +29,14 @@ class SimplePlaylistIterator implements PlaylistIterator
     }
 }
 
-class ShuffledPlaylistIterator implements PlaylistIterator {
+class ShuffledPlaylistIterator implements PlaylistIterator
+{
 
-    private ArrayList<String> shuffledSongs;
+    private ArrayList<String> shuffledSongs;//which stores songs of that particular playlist
     private int index;
 
-    public ShuffledPlaylistIterator(Playlist playlist) {
-
+    public ShuffledPlaylistIterator(Playlist playlist)
+    {
         shuffledSongs = new ArrayList<>(playlist.getsongs());
 
         Collections.shuffle(shuffledSongs);
@@ -43,11 +44,13 @@ class ShuffledPlaylistIterator implements PlaylistIterator {
         index = 0;
     }
 
-    public boolean hasnext() {
-
+    //checking out of bounds if there is next song or not
+    public boolean hasnext()
+    {
         return index < shuffledSongs.size();
     }
 
+    //printing the song
     public String next() {
 
         return shuffledSongs.get(index++);
@@ -92,8 +95,9 @@ public class Iterator
 {
     public static void main(String[] args) {
 
+        //creating the playlist
         Playlist playlist = new Playlist();
-
+        //adding the songs to the playlist
         playlist.addsong("Believer");
         playlist.addsong("Perfect");
         playlist.addsong("Shape of You");
@@ -101,20 +105,24 @@ public class Iterator
 
         System.out.println("Simple Order:");
 
+        //and i need a simple playlist
         PlaylistIterator simple =
                 playlist.iterator("simple");
 
+        //checking it has a next song or not -->checking bounds actually
         while(simple.hasnext()) {
 
-            System.out.println(simple.next());
+            System.out.println(simple.next());//printing the song
         }
 
 
         System.out.println("\nShuffled Order:");
 
+        //if you need a shuffled playlist
         PlaylistIterator shuffle =
                 playlist.iterator("shuffled");
 
+        //and printing the songs after shuffling the playlist
         while(shuffle.hasnext()) {
 
             System.out.println(shuffle.next());
