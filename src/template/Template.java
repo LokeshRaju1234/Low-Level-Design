@@ -5,5 +5,4 @@ interface TaxCalculator
 }
 
 
-public class Template {
-}
+
