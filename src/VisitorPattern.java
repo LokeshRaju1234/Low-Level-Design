@@ -1,3 +1,7 @@
+//Without Visitor → you modify every class whenever a new operation comes.
+
+//With Visitor → you just create a new Visitor class.
+
 interface item
 {
     int accept(Visitor visitor);
@@ -36,13 +40,14 @@ class Fruit implements item
     }
 }
 
-
+//Defines operations for each element type
 interface Visitor
 {
     int visit(Books book);
     int visit(Fruit fruit);
 }
 
+//Implements operations
 class PriceVisitor implements Visitor
 {
     @Override
